@@ -1,0 +1,108 @@
+import java.util.*;
+class Computer {
+		String name;
+		public Computer(String name){
+			this.name=name;
+		}
+		public int show(){
+		int m=(int)(Math.random()*3+1);
+		return m;
+	}
+}
+class Player {
+	public Player(String name){
+	this.name=name;
+	}
+	String name;
+	public int show(){
+	Scanner sc=new Scanner(System.in);
+		System.out.print("|   请出拳 ");
+		int m=sc.nextInt();
+		return m;
+	}
+
+}
+class Game{
+	Computer computer;
+	Player player;
+	public Game(Computer computer,Player player){
+		this.computer=computer;
+		this.player=player;
+
+	}
+	int c;
+	public void start(int n,int m){//n是电脑 m是你
+		if(n==m){
+			System.out.println("|  平了 ");
+			c=0;
+		}else{
+			if(m==1){
+				if(n==2){
+				System.out.println("|   "+player.name+"出剪刀，"+computer.name+"出了石头");
+				System.out.println("|   本局"+player.name+"输了");
+					c=-1;
+				}else if(n==3){
+					System.out.println("|   "+player.name+"出剪刀，"+computer.name+"出了布");
+					System.out.println("|   本局"+player.name+"赢了");
+					c=1;
+				}
+			}else if(m==2){
+				if(n==3){
+				System.out.println("|   "+player.name+"出石头，"+computer.name+"出了布");
+				System.out.println("|   本局"+player.name+"输了");
+				c=-1;	
+				}else if(n==1){
+					System.out.println("|   "+player.name+"出石头，"+computer.name+"出了剪刀");
+					System.out.println("|   本局"+player.name+"赢了");
+					c=1;
+				}
+				
+			}else{
+				if(n==1){
+				System.out.println("|   "+player.name+"出布，"+computer.name+"出了剪刀");
+				System.out.println("|   本局"+player.name+"输了");
+				c=-1;	
+				}else if(n==2){
+					System.out.println("|   "+player.name+"出布，"+computer.name+"出了石头");
+					System.out.println("|   本局"+player.name+"赢了");
+					c=1;
+				}
+			}
+		}
+	}
+	public int co(){
+		int v=c;
+		return v;
+	}
+}
+public class bc1{
+	public static void main(String[] args){
+		System.out.println("---------><剪刀石头不游戏><----------");
+		System.out.println("   *输入规则：");
+		System.out.println("       *输入1视为出剪刀");
+		System.out.println("       *输入2视为出石头");
+		System.out.println("       *输入3视为出布");
+		System.out.println("---------本局为三局两胜制------------");
+		System.out.println("请输入1、2、3（剪刀、石头、布）");
+		System.out.println("请输入玩家姓名");
+		Scanner sc=new Scanner(System.in);
+		String d=sc.next();
+		int  jf=0;
+			Computer j=new Computer("电脑");
+			Player k=new Player(d);
+			Game l=new Game(j,k);
+		for(int i=1;i<=3;i++){
+			System.out.println("---------------第"+i+"局游戏-----------");
+			l.start(j.show(),k.show());
+			jf=jf+l.co();
+			if(jf==2||jf==-2)
+			break;
+		}
+		if(jf>0){
+				System.out.println("玩家"+d+"获得本次游戏的胜利");
+			}else if(jf==0){
+				System.out.println("玩家"+d+"和电脑打成平手");
+			}else
+			System.out.println("很遗憾电脑获得本次游戏的胜利");
+	}
+}
