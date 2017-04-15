@@ -1,0 +1,154 @@
+  import java.util.*;
+  class lx {
+private String name;
+private String phone;
+
+public String getName() {
+return name;
+}
+public void setName(String name) {
+this.name = name;
+}
+
+public String getPhone() {
+return phone;
+}
+public void setPhone(String phone) {
+this.phone = phone;
+}
+	public lx(String a,String b){
+		setName(a);
+		setPhone(b);
+	}//有参
+	public void ee(){
+		System.out.println("联系人"+name+"，电话为"+phone);
+			System.out.println("");
+			
+}
+}
+class tl{
+	public int xj(lx d[],int n){
+		Scanner sc=new Scanner(System.in);
+	System.out.println("联系人姓名:");
+		String name=sc.next();
+	System.out.println("联系人电话:");
+		String phone=sc.next();
+		d[n]=new lx(name,phone);
+		n=n+1;
+		return n;
+	}
+	public int cxj(lx d[],int n){
+		Scanner sc=new Scanner(System.in);
+		System.out.print("输入你需要创建几个联系人");
+		try{
+			int f=sc.nextInt();
+			for(int i=0;i<f;i++){
+	System.out.println("联系人姓名:");
+		String name=sc.next();
+	System.out.println("联系人电话:");
+		String phone=sc.next();
+		d[n+i]=new lx(name,phone);
+		}
+		n=n+f;
+		}catch(Exception e){
+			System.out.println("请输入数值");
+		}
+		return n;
+	}
+	public void ll(lx d[],int n){
+		
+		for(int i=0;i<n;i++){
+			d[i].ee();
+			}
+		
+	}
+	public void cz(lx d[],int n){
+			Scanner sc=new Scanner(System.in);
+		System.out.print("输入你需要查找联系人姓名：");
+		String f=sc.next();
+		int i;
+		for(i=0;i<n;i++){
+			String s=d[i].getName();
+			if(s.equals(f))
+			break;
+			}
+			if(i!=n){
+				d[i].ee();
+			}
+			else{
+				System.out.println("没有找到联系人");
+				
+			}
+		
+	
+	}
+
+public int sc(lx d[],int n){
+			Scanner sc=new Scanner(System.in);
+		System.out.print("输入你需要删除联系人姓名：");
+		String f=sc.next();
+		int i;
+		for(i=0;i<n;i++){
+			String s=d[i].getName();
+			if(s.equals(f))
+			break;
+			}
+			if(i!=n){
+				d[i]=d[n-1];
+				System.out.print("已删除联系人");
+			}
+			else{
+				System.out.println("没有找到联系人");
+				
+			}
+			n=n-1;
+		return n;
+	
+	}
+
+	
+}
+public class bc2{
+public static void main(String[] args){
+	lx s[];
+	s=new lx[100];
+	int n=0;//联系人个数
+	tl m=new tl();
+
+	int se=0;
+        while(se!=7){
+       System.out.println("--------- 》》》zpz_通讯录《《《《---------");
+		System.out.println("           1、新建联系人");
+		System.out.println("           2、新建多个联系人");
+		System.out.println("           3、输出所有联系人");
+		System.out.println("           4、查找联系人联系人");
+		System.out.println("           5、删除联系人联系人");
+		System.out.println("           7、结束");
+Scanner sc=new Scanner(System.in);
+		System.out.println("请选择功能编号（1~6）：");
+		try{
+			se=sc.nextInt();
+		}catch(Exception e){
+			System.out.println("请输入数值");
+		}
+		 
+		switch (se){
+			case 1:
+				n=m.xj(s,n);
+				break;
+			case 2:
+				n=m.cxj(s,n);
+				break;
+			case 3:
+				m.ll(s,n);
+				break;
+			case 4:
+				m.cz(s,n);
+				break;
+			case 5:
+				n=m.sc(s,n);
+				break;
+			}
+        }
+}
+}
